@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter Monitor - Test Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #0f0f16;
+            color: #f9fafb;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .card {
+            background: #1a1a24;
+            border: 1px solid #2a2a3a;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            background: #5865f2;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        .btn:hover {
+            background: #4752c4;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 8px 16px;
+            background: #252533;
+            border-radius: 6px;
+            margin: 10px 0;
+        }
+
+        .success {
+            color: #3ba55d;
+        }
+
+        .error {
+            color: #ed4245;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚀 Twitter Monitor - Test Page</h1>
+
+        <div class="card">
+            <h2>基础功能测试</h2>
+            <p>这是一个测试页面，用于验证基础样式和功能。</p>
+            <div style="margin-top: 20px;">
+                <button class="btn" onclick="alert('按钮功能正常!')">测试按钮</button>
+                <button class="btn" onclick="toggleTheme()">切换主题</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>监控列表（0）</h3>
+            <div style="text-align: center; padding: 60px 20px;">
+                <div style="font-size: 4rem; opacity: 0.5;">📭</div>
+                <p style="font-size: 1.25rem; color: #b9bbbe; margin-top: 20px;">暂无监控数据</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>钱包连接</h3>
+            <div style="display: flex; gap: 15px; margin-top: 15px;">
+                <button class="btn">Phantom Wallet</button>
+                <button class="btn">OKX Wallet</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>系统状态</h3>
+            <div class="status">
+                <span class="success">✓ 页面加载成功</span>
+            </div>
+            <div class="status">
+                <span class="success">✓ 样式加载正常</span>
+            </div>
+            <div class="status">
+                <span id="theme-status" class="success">✓ 主题: 深色</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        console.log('Test page loaded successfully!');
+
+        function toggleTheme() {
+            const body = document.body;
+            const currentBg = body.style.backgroundColor;
+
+            if (currentBg === 'rgb(15, 15, 22)' || currentBg === '#0f0f16') {
+                body.style.backgroundColor = '#ffffff';
+                body.style.color = '#111827';
+                document.getElementById('theme-status').textContent = '✓ 主题: 浅色';
+            } else {
+                body.style.backgroundColor = '#0f0f16';
+                body.style.color = '#f9fafb';
+                document.getElementById('theme-status').textContent = '✓ 主题: 深色';
+            }
+        }
+    </script>
+</body>
+</html>

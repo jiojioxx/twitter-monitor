@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twitter Monitor - 实时监控平台</title>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="src/styles/reset.css">
+    <link rel="stylesheet" href="src/styles/variables.css">
+    <link rel="stylesheet" href="src/styles/base.css">
+    <link rel="stylesheet" href="src/styles/components.css">
+    <link rel="stylesheet" href="src/styles/modules.css">
+    <link rel="stylesheet" href="src/styles/analyzer.css">
+    <link rel="stylesheet" href="src/styles/responsive.css">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- App Container -->
+    <div id="app" class="app-container">
+
+        <!-- Header Module -->
+        <header id="header-module" class="header-module"></header>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+
+            <!-- Monitor Module (关注列表) -->
+            <section id="monitor-module" class="module-container" data-module="monitor"></section>
+
+            <!-- Feed Module (信息流) -->
+            <section id="feed-module" class="module-container" data-module="feed" style="display: none;"></section>
+
+            <!-- Posts Module (其他平台) -->
+            <section id="posts-module" class="module-container" data-module="posts" style="display: none;"></section>
+
+            <!-- Settings Module (通知设置) -->
+            <section id="settings-module" class="module-container" data-module="settings" style="display: none;"></section>
+
+            <!-- DevHunter Module (Dev Hunter) -->
+            <section id="devhunter-module" class="module-container" data-module="devhunter" style="display: none;"></section>
+
+            <!-- AddressAnalyzer Module (地址分析) -->
+            <section id="analyzer-module" class="module-container" data-module="analyzer" style="display: none;"></section>
+
+            <!-- Dashboard Module (deprecated) -->
+            <section id="dashboard-module" class="module-container" data-module="dashboard" style="display: none;"></section>
+
+            <!-- Analytics Module (deprecated) -->
+            <section id="analytics-module" class="module-container" data-module="analytics" style="display: none;"></section>
+
+        </main>
+
+        <!-- Footer Module -->
+        <footer id="footer-module" class="footer-module"></footer>
+
+        <!-- Modal Container -->
+        <div id="modal-container"></div>
+
+        <!-- Toast Container -->
+        <div id="toast-container" class="toast-container"></div>
+
+        <!-- Loading Overlay -->
+        <div id="loading-overlay" class="loading-overlay" style="display: none;">
+            <div class="loader"></div>
+        </div>
+
+    </div>
+
+    <!-- Configuration -->
+    <script src="src/config/app.config.js"></script>
+    <script src="src/config/api.config.js"></script>
+
+    <!-- Utils -->
+    <script src="src/utils/helpers.js"></script>
+    <script src="src/utils/validators.js"></script>
+    <script src="src/utils/formatters.js"></script>
+
+    <!-- Services -->
+    <script src="src/services/api.service.js"></script>
+    <script src="src/services/auth.service.js"></script>
+    <script src="src/services/websocket.service.js"></script>
+    <script src="src/services/storage.service.js"></script>
+
+    <!-- Core Modules -->
+    <script src="src/modules/core/EventBus.js"></script>
+    <script src="src/modules/core/Router.js"></script>
+    <script src="src/modules/core/StateManager.js"></script>
+
+    <!-- UI Components -->
+    <script src="src/modules/components/Toast.js"></script>
+    <script src="src/modules/components/Modal.js"></script>
+    <script src="src/modules/components/Loader.js"></script>
+
+    <!-- Feature Modules -->
+    <script src="src/modules/header/Header.js"></script>
+    <script src="src/modules/monitor/Monitor.js"></script>
+    <script src="src/modules/feed/Feed.js"></script>
+    <script src="src/modules/posts/Posts.js"></script>
+    <script src="src/modules/settings/Settings.js"></script>
+    <script src="src/modules/devhunter/HeliusAPI.js"></script>
+    <script src="src/modules/devhunter/DevHunter.js"></script>
+    <script src="src/modules/analyzer/AnalyzerAPI.js"></script>
+    <script src="src/modules/analyzer/AddressAnalyzer.js"></script>
+
+    <!-- App Initialization -->
+    <script src="src/app.js"></script>
+</body>
+</html>
