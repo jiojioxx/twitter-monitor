@@ -136,6 +136,12 @@ class TwitterMonitorApp {
             await this.modules.analyzer.init();
         }
 
+        // Initialize PluginHome (插件首页)
+        if (typeof PluginHome !== 'undefined') {
+            this.modules['plugin-home'] = new PluginHome();
+            await this.modules['plugin-home'].init();
+        }
+
         // Initialize dashboard (deprecated)
         if (typeof Dashboard !== 'undefined') {
             this.modules.dashboard = new Dashboard();
@@ -178,6 +184,7 @@ class TwitterMonitorApp {
         window.router.addRoute('/settings', () => this.showModule('settings'));
         window.router.addRoute('/devhunter', () => this.showModule('devhunter'));
         window.router.addRoute('/analyzer', () => this.showModule('analyzer'));
+        window.router.addRoute('/plugin-home', () => this.showModule('plugin-home'));
 
         // Legacy routes
         window.router.addRoute('/monitor', () => this.showModule('monitor'));
