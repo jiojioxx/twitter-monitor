@@ -21,17 +21,33 @@ class PluginHome {
 
     render() {
         this.container.innerHTML = `
-            <div class="plugin-home-container">
-                <!-- 顶部区域 -->
-                <div class="plugin-header">
-                    <div class="plugin-logo">LOGO</div>
-                    <button class="protection-status-btn">
-                        <span class="status-icon"></span>
-                        <span>保护中</span>
-                    </button>
-                </div>
+            <div class="plugin-home-wrapper">
+                <div class="plugin-home-container">
+                    <!-- 顶部区域 -->
+                    <div class="plugin-header">
+                        <div class="plugin-logo">LOGO</div>
+                        <button class="protection-status-btn">
+                            <span class="status-icon"></span>
+                            <span>保护中</span>
+                        </button>
+                    </div>
 
-                <!-- 钱包信息卡片 -->
+                    <!-- 搜索栏 -->
+                    <div class="search-bar-container">
+                        <div class="search-bar">
+                            <svg class="search-icon" width="18" height="18" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"/>
+                            </svg>
+                            <input type="text" class="search-input" placeholder="搜索地址、交易哈希或代币">
+                            <button class="search-clear-btn" style="display: none;">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                    <path d="M8 0a8 8 0 100 16A8 8 0 008 0zM5.354 4.646a.5.5 0 10-.708.708L7.293 8l-2.647 2.646a.5.5 0 00.708.708L8 8.707l2.646 2.647a.5.5 0 00.708-.708L8.707 8l2.647-2.646a.5.5 0 00-.708-.708L8 7.293 5.354 4.646z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 钱包信息卡片 -->
                 <div class="wallet-card">
                     <div class="wallet-header">
                         <div class="wallet-avatar"></div>
@@ -169,6 +185,7 @@ class PluginHome {
                         <!-- 新闻列表将通过JavaScript动态加载 -->
                     </div>
                 </div>
+                </div>
             </div>
         `;
     }
@@ -237,6 +254,31 @@ class PluginHome {
             bannerClose.addEventListener('click', () => {
                 const banner = this.container.querySelector('.ad-banner');
                 if (banner) banner.style.display = 'none';
+            });
+        }
+
+        // 搜索栏功能
+        const searchInput = this.container.querySelector('.search-input');
+        const searchClearBtn = this.container.querySelector('.search-clear-btn');
+
+        if (searchInput && searchClearBtn) {
+            // 输入时显示/隐藏清除按钮
+            searchInput.addEventListener('input', (e) => {
+                searchClearBtn.style.display = e.target.value ? 'flex' : 'none';
+            });
+
+            // 清除按钮点击
+            searchClearBtn.addEventListener('click', () => {
+                searchInput.value = '';
+                searchClearBtn.style.display = 'none';
+                searchInput.focus();
+            });
+
+            // 回车搜索
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    this.handleSearch(searchInput.value);
+                }
             });
         }
     }
@@ -346,6 +388,15 @@ class PluginHome {
     handleNewsClick(news) {
         console.log('News clicked:', news.title);
         alert('查看新闻\n\n' + news.title + '\n\n' + news.time);
+    }
+
+    handleSearch(query) {
+        if (!query || !query.trim()) {
+            return;
+        }
+        console.log('Searching for:', query);
+        alert('搜索功能\n\n正在搜索: ' + query);
+        // 这里可以添加实际的搜索逻辑
     }
 
     destroy() {

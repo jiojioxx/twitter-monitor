@@ -2,21 +2,30 @@
    插件首页样式 - Plugin Home Styles
    ======================================== */
 
-.plugin-home-container {
-    max-width: 480px;
-    margin: 0 auto;
-    padding: var(--spacing-lg);
+/* 整体包裹框 */
+.plugin-home-wrapper {
+    max-width: 500px;
+    margin: var(--spacing-lg) auto;
+    padding: var(--spacing-md);
     background: #ffffff !important;
-    min-height: 100vh;
+    border: 1px solid #e8e8e8;
+    border-radius: var(--radius-xl);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.plugin-home-container {
+    background: #ffffff !important;
 }
 
 /* 确保父容器也是白色背景 */
 #plugin-home-module {
-    background: #ffffff !important;
+    background: #f5f5f5 !important;
+    min-height: 100vh;
+    padding: var(--spacing-md) 0;
 }
 
 .module-container[data-module="plugin-home"] {
-    background: #ffffff !important;
+    background: #f5f5f5 !important;
 }
 
 /* ========================================
@@ -26,8 +35,72 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+}
+
+/* ========================================
+   搜索栏 - Search Bar
+   ======================================== */
+.search-bar-container {
     margin-bottom: var(--spacing-lg);
-    padding-bottom: var(--spacing-md);
+}
+
+.search-bar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: #f5f5f5;
+    border: 1px solid #e0e0e0;
+    border-radius: 24px;
+    padding: 10px 16px;
+    transition: all var(--transition-base);
+}
+
+.search-bar:focus-within {
+    background: #ffffff;
+    border-color: #1890ff;
+    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.1);
+}
+
+.search-icon {
+    color: #999;
+    margin-right: 8px;
+    flex-shrink: 0;
+}
+
+.search-input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+    padding: 0;
+}
+
+.search-input::placeholder {
+    color: #bbb;
+}
+
+.search-clear-btn {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #999;
+    margin-left: 8px;
+    padding: 0;
+    flex-shrink: 0;
+    transition: color var(--transition-base);
+}
+
+.search-clear-btn:hover {
+    color: #666;
 }
 
 .plugin-logo {
@@ -536,10 +609,47 @@
 }
 
 /* 暗色主题适配 */
-[data-theme="dark"] .plugin-home-container,
 [data-theme="dark"] #plugin-home-module,
 [data-theme="dark"] .module-container[data-module="plugin-home"] {
     background: var(--bg-primary) !important;
+}
+
+[data-theme="dark"] .plugin-home-wrapper {
+    background: var(--bg-secondary) !important;
+    border-color: var(--border-primary);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .plugin-home-container {
+    background: var(--bg-secondary) !important;
+}
+
+[data-theme="dark"] .search-bar {
+    background: var(--bg-tertiary);
+    border-color: var(--border-primary);
+}
+
+[data-theme="dark"] .search-bar:focus-within {
+    background: var(--bg-primary);
+    border-color: #40a9ff;
+    box-shadow: 0 0 0 2px rgba(64, 169, 255, 0.2);
+}
+
+[data-theme="dark"] .search-input {
+    color: var(--text-primary);
+}
+
+[data-theme="dark"] .search-input::placeholder {
+    color: var(--text-tertiary);
+}
+
+[data-theme="dark"] .search-icon,
+[data-theme="dark"] .search-clear-btn {
+    color: var(--text-tertiary);
+}
+
+[data-theme="dark"] .search-clear-btn:hover {
+    color: var(--text-secondary);
 }
 
 [data-theme="dark"] .plugin-logo {
