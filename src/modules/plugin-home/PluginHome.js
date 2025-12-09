@@ -182,10 +182,22 @@ class PluginHome {
             });
         }
 
+        // 钱包卡片点击
+        const walletCard = this.container.querySelector('.wallet-card');
+        if (walletCard) {
+            walletCard.addEventListener('click', (e) => {
+                // 如果点击的是移除按钮，不触发卡片点击
+                if (!e.target.closest('.wallet-remove-btn')) {
+                    this.handleWalletCardClick();
+                }
+            });
+        }
+
         // 钱包移除按钮
         const removeBtn = this.container.querySelector('.wallet-remove-btn');
         if (removeBtn) {
-            removeBtn.addEventListener('click', () => {
+            removeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
                 this.handleRemoveWallet();
             });
         }
@@ -207,6 +219,18 @@ class PluginHome {
             });
         });
 
+        // 数据卡片点击
+        const dataCards = this.container.querySelectorAll('.data-card');
+        dataCards.forEach(card => {
+            card.addEventListener('click', () => {
+                if (card.classList.contains('fear-greed-card')) {
+                    this.handleFearGreedClick();
+                } else if (card.classList.contains('btc-price-card')) {
+                    this.handleBtcPriceClick();
+                }
+            });
+        });
+
         // 广告banner关闭
         const bannerClose = this.container.querySelector('.banner-close');
         if (bannerClose) {
@@ -221,19 +245,25 @@ class PluginHome {
         // 模拟新闻数据
         const newsData = [
             {
+                id: 1,
                 title: '43天数据真实的全球市场：AI熄火、Crypto震荡，12月怎么走？',
                 time: '2025-12-3 14:25',
-                tags: ['BTC', '安全']
+                tags: ['BTC', '安全'],
+                url: '#'
             },
             {
+                id: 2,
                 title: '矿企巨头Bitfury豪掷5000万美元入局，6000张H100等效算力的Gonka有何魅力？',
                 time: '2025-12-3 14:25',
-                tags: ['投资', '技术']
+                tags: ['投资', '技术'],
+                url: '#'
             },
             {
+                id: 3,
                 title: '从Sahara到Tradoor，盘点近期山寨币"花式下跌"套路',
                 time: '2025-12-3 14:25',
-                tags: ['币安', '空投']
+                tags: ['币安', '空投'],
+                url: '#'
             }
         ];
 
@@ -241,7 +271,7 @@ class PluginHome {
         if (!newsList) return;
 
         newsList.innerHTML = newsData.map(news => `
-            <div class="news-item">
+            <div class="news-item" data-news-id="${news.id}">
                 <h4 class="news-title">${news.title}</h4>
                 <div class="news-meta">
                     <span class="news-time">${news.time}</span>
@@ -251,6 +281,14 @@ class PluginHome {
                 </div>
             </div>
         `).join('');
+
+        // 添加新闻项点击事件
+        const newsItems = newsList.querySelectorAll('.news-item');
+        newsItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                this.handleNewsClick(newsData[index]);
+            });
+        });
     }
 
     handleProtectionStatus() {
@@ -287,6 +325,27 @@ class PluginHome {
     handleTodoClick(item) {
         console.log('Todo item clicked:', item.querySelector('.todo-text').textContent);
         // 这里可以添加处理待办事项的逻辑
+        alert('待办事项: ' + item.querySelector('.todo-text').textContent);
+    }
+
+    handleWalletCardClick() {
+        console.log('Wallet card clicked');
+        alert('钱包详情\n地址: ' + this.walletAddress + '\n已保护: ' + this.protectedDays + '天');
+    }
+
+    handleFearGreedClick() {
+        console.log('Fear & Greed Index clicked');
+        alert('恐慌贪婪指数详情\n当前指数: ' + this.fearGreedIndex + '\n状态: 恐慌');
+    }
+
+    handleBtcPriceClick() {
+        console.log('BTC price clicked');
+        alert('BTC价格详情\n当前价格: $' + this.btcPrice.toLocaleString() + '\n24h涨跌: ' + this.btcChange + '%');
+    }
+
+    handleNewsClick(news) {
+        console.log('News clicked:', news.title);
+        alert('查看新闻\n\n' + news.title + '\n\n' + news.time);
     }
 
     destroy() {

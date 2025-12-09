@@ -6,8 +6,17 @@
     max-width: 480px;
     margin: 0 auto;
     padding: var(--spacing-lg);
-    background: #ffffff;
+    background: #ffffff !important;
     min-height: 100vh;
+}
+
+/* 确保父容器也是白色背景 */
+#plugin-home-module {
+    background: #ffffff !important;
+}
+
+.module-container[data-module="plugin-home"] {
+    background: #ffffff !important;
 }
 
 /* ========================================
@@ -61,6 +70,14 @@
     border-radius: var(--radius-lg);
     padding: var(--spacing-lg);
     margin-bottom: var(--spacing-lg);
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.wallet-card:hover {
+    background: #f5f5f5;
+    border-color: #d8d8d8;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 .wallet-header {
@@ -317,6 +334,19 @@
     border: 1px solid #e8e8e8;
     border-radius: var(--radius-lg);
     padding: var(--spacing-lg);
+    cursor: pointer;
+    transition: all var(--transition-base);
+}
+
+.data-card:hover {
+    background: #f5f5f5;
+    border-color: #d8d8d8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.data-card:active {
+    transform: translateY(0);
 }
 
 .card-header {
@@ -414,17 +444,27 @@
 .news-list {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-lg);
+    gap: var(--spacing-md);
 }
 
 .news-item {
-    padding-bottom: var(--spacing-lg);
-    border-bottom: 1px dashed #e8e8e8;
+    background: #fafafa;
+    border: 1px solid #e8e8e8;
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    cursor: pointer;
+    transition: all var(--transition-base);
 }
 
-.news-item:last-child {
-    border-bottom: none;
-    padding-bottom: 0;
+.news-item:hover {
+    background: #f5f5f5;
+    border-color: #d8d8d8;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.news-item:active {
+    transform: translateY(0);
 }
 
 .news-title {
@@ -437,8 +477,8 @@
     transition: color var(--transition-base);
 }
 
-.news-title:hover {
-    color: #666;
+.news-item:hover .news-title {
+    color: #1890ff;
 }
 
 .news-meta {
@@ -496,8 +536,10 @@
 }
 
 /* 暗色主题适配 */
-[data-theme="dark"] .plugin-home-container {
-    background: var(--bg-primary);
+[data-theme="dark"] .plugin-home-container,
+[data-theme="dark"] #plugin-home-module,
+[data-theme="dark"] .module-container[data-module="plugin-home"] {
+    background: var(--bg-primary) !important;
 }
 
 [data-theme="dark"] .plugin-logo {
@@ -511,9 +553,17 @@
 }
 
 [data-theme="dark"] .wallet-card,
-[data-theme="dark"] .data-card {
+[data-theme="dark"] .data-card,
+[data-theme="dark"] .news-item {
     background: var(--bg-secondary);
     border-color: var(--border-primary);
+}
+
+[data-theme="dark"] .wallet-card:hover,
+[data-theme="dark"] .data-card:hover,
+[data-theme="dark"] .news-item:hover {
+    background: var(--bg-tertiary);
+    border-color: var(--border-secondary);
 }
 
 [data-theme="dark"] .wallet-address,
@@ -522,6 +572,10 @@
 [data-theme="dark"] .section-title,
 [data-theme="dark"] .news-title {
     color: var(--text-primary);
+}
+
+[data-theme="dark"] .news-item:hover .news-title {
+    color: #40a9ff;
 }
 
 [data-theme="dark"] .wallet-stats,
